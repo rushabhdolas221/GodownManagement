@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<h2 class="mb-4">Edit Product</h2>
+
+<div class="card shadow p-4">
+  <form action="/update-product/<%= product._id %>" method="POST" class="row g-3">
+
+    <div class="col-md-6">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" value="<%= product.name %>" class="form-control" required>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Category</label>
+      <input type="text" name="category" value="<%= product.category %>" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Price</label>
+      <input type="number" name="price" value="<%= product.price %>" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Reorder Level</label>
+      <input type="number" name="reorderLevel" value="<%= product.reorderLevel %>" class="form-control">
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary">Update Product</button>
+      <a href="/products" class="btn btn-secondary">Cancel</a>
+    </div>
+
+  </form>
+</div>
+
+<%- include('partials/footer') %>

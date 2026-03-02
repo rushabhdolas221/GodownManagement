@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Godown Admin Panel</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body id="body">
+
+<!-- Loading Spinner -->
+<div id="loader">
+  <div class="spinner-border text-light"></div>
+</div>
+
+<div class="d-flex">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar p-3" id="sidebar">
+    <h4 class="text-white mb-4 d-flex justify-content-between align-items-center">
+      <span><i class="bi bi-box-seam"></i> Godown</span>
+      <i class="bi bi-list toggle-btn" onclick="toggleSidebar()"></i>
+    </h4>
+
+    <ul class="nav flex-column">
+
+      <li class="nav-item mb-2">
+        <a href="/dashboard" class="nav-link text-white <%= (typeof active !== 'undefined' && active === 'dashboard') ? 'active-link' : '' %>">
+          <i class="bi bi-speedometer2"></i> <span class="link-text">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-item mb-2">
+        <a href="/products" class="nav-link text-white <%= (typeof active !== 'undefined' && active === 'products') ? 'active-link' : '' %>">
+          <i class="bi bi-box"></i> <span class="link-text">Products</span>
+        </a>
+      </li>
+
+      <li class="nav-item mt-4">
+        <a href="/logout" class="nav-link text-danger">
+          <i class="bi bi-box-arrow-right"></i> <span class="link-text">Logout</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content w-100 p-4 fade-in">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h4 class="fw-bold">Admin Panel</h4>
+
+      <button onclick="toggleTheme()" class="btn btn-outline-dark btn-sm">
+        🌙 Toggle Theme
+      </button>
+    </div>

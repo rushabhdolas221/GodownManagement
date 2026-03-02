@@ -1,0 +1,70 @@
+<%- include('partials/header') %>
+
+<h2 class="mb-4 fw-bold">Dashboard Overview</h2>
+
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card bg-primary text-white p-4 shadow text-center">
+      <h6>Total Products</h6>
+      <h2 id="counter1">0</h2>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card bg-success text-white p-4 shadow text-center">
+      <h6>Total Stock</h6>
+      <h2 id="counter2">0</h2>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card bg-danger text-white p-4 shadow text-center">
+      <h6>Low Stock Items</h6>
+      <h2 id="counter3">0</h2>
+    </div>
+  </div>
+</div>
+
+<div class="card p-4 shadow">
+  <h5 class="mb-3">Inventory Analytics</h5>
+  <canvas id="stockChart"></canvas>
+</div>
+
+<script>
+function animateCounter(id, target) {
+  let count = 0;
+  const increment = target / 50;
+  const element = document.getElementById(id);
+
+  const interval = setInterval(() => {
+    count += increment;
+    if (count >= target) {
+      count = target;
+      clearInterval(interval);
+    }
+    element.innerText = Math.floor(count);
+  }, 20);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+
+  animateCounter("counter1", <%= totalProducts %>);
+  animateCounter("counter2", <%= totalStock %>);
+  animateCounter("counter3", <%= lowStock %>);
+
+  const ctx = document.getElementById('stockChart');
+
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Total Products', 'Low Stock'],
+      datasets: [{
+        data: [<%= totalProducts %>, <%= lowStock %>],
+        backgroundColor: ['#4e73df', '#e74a3b']
+      }]
+    }
+  });
+});
+</script>
+
+<%- include('partials/footer') %>

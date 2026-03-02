@@ -1,0 +1,22 @@
+<%- include('partials/header') %>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+  <div class="col-md-4">
+    <div class="auth-card p-5 text-center">
+      <h2 class="mb-4 fw-bold">Welcome Back</h2>
+
+      <form action="/login" method="POST">
+        <input type="email" name="email" class="form-control mb-3" placeholder="Email Address" required>
+        <input type="password" name="password" class="form-control mb-4" placeholder="Password" required>
+        <button class="btn btn-dark w-100 py-2">Login</button>
+      </form>
+
+      <div class="mt-4">
+        <span class="text-muted">Don't have an account?</span>
+        <a href="/register" class="fw-bold">Register</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
