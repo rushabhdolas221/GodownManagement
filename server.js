@@ -11,7 +11,7 @@ const Product = require('./models/Product');
 const app = express();
 
 // ================= DATABASE =================
-mongoose.connect('mongodb://127.0.0.1:27017/godownDB')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log("Connection Error:", err));
 
@@ -175,6 +175,8 @@ app.post('/update-product/:id', isLoggedIn, async (req, res) => {
 });
 
 // ================= SERVER =================
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
