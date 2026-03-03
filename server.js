@@ -13,7 +13,7 @@ const app = express();
 // ================= DATABASE =================
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log("Connection Error:", err));
+  .catch(err => console.log(err));
 
 // ================= MIDDLEWARE =================
 app.set('view engine', 'ejs');
@@ -24,9 +24,9 @@ app.use(session({
   secret: 'godownSecretKey',
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: 'mongodb://127.0.0.1:27017/godownDB'
-  })
+ store: MongoStore.create({
+  mongoUrl: process.env.MONGO_URI
+})
 }));
 
 // ================= AUTH MIDDLEWARE =================
